@@ -258,5 +258,9 @@ Log L = -2010.311681036163 with 76 degrees of freedom, IC = 4175.206456312008
 
 ```
 
-the analysis will proceed to test all the branches we selected (in step 8, which is *All*) to see if there is a proportion of sites with &omega; > 1 at that site, and whose removal would cause a significant drop in log-likelihood. As a shortcut, if the branch has no sites with &omega; > 1, it will not be tested (one can just set the p-value to 0.5).
+the analysis will proceed to test all the branches we selected (in step 8, which is *All*) to see if there is a proportion of sites with &omega; > 1 at that site, and whose removal would cause a significant drop in log-likelihood. As a shortcut, if the branch has no sites with &omega; > 1, it will not be tested (one can just set the p-value to 0.5). This is the most time consuming phase of the analysis. As the tests are done, aBSREL will print out a running tally to the screen, including the rate distribution inferred for a particular branch under the null (&omega; &le; 1) model, and the p-value for the branch.
+
+```
+```
+```
 
