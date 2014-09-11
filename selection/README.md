@@ -133,4 +133,87 @@ Questions.
 Using aBSREL to find lineages which have experienced episodic diversification.
 ----------------------------------
 
->aBSREL is a method we are currently preparing for publication. It is an extension of our popular [BS-REL model](www.ncbi.nlm.nih.gov/pubmed/21670087), which performs a complexity analysis and model selection prior to doing hypothesis testing. It runs much faster than BS-REL and has better statistical properies.
+>aBSREL is a method we are currently preparing for publication. It is an extension of our popular [BS-REL model](http://www.ncbi.nlm.nih.gov/pubmed/21670087), which performs a complexity analysis and model selection prior to doing hypothesis testing. It runs much faster than BS-REL and has better statistical properies.
+
+We continue using the `HIV.nex` dataset from the previous example, but now we are interested in scanning the phylogeny for all the branches where selection may have operated.  
+
+1. Select the appropriate analysis to run
+  * **_GUI_** Choose *Analysis:Standard Analyses:Positive Selection:BranchSiteREL.bf*    
+  * **_CLI_** When presented with the list of standard analysis options upon launch, choose *Positive Selection*, then option 1 (*Use the random effects branch-site model (2010) to find lineages subject to episodic selection.*)
+2. **Universal** genetic code option
+3. **Yes** to choose the adaptive version of BSREL.
+4. **No** to assume that synonymous rates do not vary from site to site
+5. The file to process
+  * **_GUI_** In the file dialog, navigate to and select `HIV.nex'`
+  * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.nex`
+6. Decline to use the tree included in the file (annotation from the previous step conflicts with the current aBSREL implementaton)
+  * **_GUI_** Type **n** into the bottom box of the console window and hit Enter
+  * **_CLI_** Type **n** and hit Enter
+7. Choose the tree file
+  * **_GUI_** In the file dialog, navigate to and select `HIV.nwk'`
+  * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.nwk`
+8. Choose all branches to test (**All**)
+  * **_CLI_** You will need to type **d** and hit Enter after selecting the **All** option to exit the selection dialog.
+9. Where to save the analysis results (more than one file, see below)
+  * **_GUI_** In the file dialog, find a place to save the result file, naming it `HIV.aBSREL`.
+  * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.aBSREL`
+
+The analysis will now run for several minutes and produce a lot of diagnostic output. 
+
+As the initial phase, aBSREL fits the standard Muse-Gaut 94 model which estimates a single &omega; for each branch and prints out model fit statistics. This is the simplest model that can be selected by aBSREL.
+
+```
+[PHASE 0] Fitting the local MG94 (no site-to-site variation) to obtain initial parameter estimates
+
+Log L = -2069.678248355542 with 66 degrees of freedom. IC = 4273.304085347947
+
+Branch omega values
+
+	Count    = 26
+	Mean     = 5.015095686511051
+	Median   = 1.91176633672278
+	Variance = 20.26920614013531
+	Std.Dev  = 4.502133509807912
+	COV      = 0.8977163729731343
+	Sum      = 130.3924878492873
+	Sq. sum  = 1160.660956869788
+	Skewness = 0.8548558502250386
+	Kurtosis = 58.55207161779911
+	Min      = 0.1475094738891478
+	2.5%     = 0.1475094738891478
+	97.5%    = 10
+	Max      = 10
+	```
+
+Next, aBSREL sorts all the branches by length (longest first), and tries to greedily add &omega; categories to one branch at a time, until the addition is no longer justified by AIC-c scores. For example, for *Node1*
+
+```
+[PHASE 1] Fitting Branch Site REL models to one branch at a time
+
+[PHASE 1] Branch Node1 log(L) = -2048.441, IC = 4234.950
+	2 rate clases
+	Node: mixtureTree.Node1
+	Length parameter = 0.01897377361517674
+	Class 1
+		omega = 0.395
+		weight = 0.925
+	Class 2
+		omega = 323.707
+		weight = 0.075
+
+[PHASE 1] Branch Node1 log(L) = -2048.446572827957, IC = 4239.084020683465
+	3 rate clases
+	Node: mixtureTree.Node1
+	Length parameter = 0.01917763880438389
+	Class 1
+		omega = 0.371
+		weight = 0.917
+	Class 2
+		omega = 0.348
+		weight = 0.007
+	Class 3
+		omega = 317.478
+		weight = 0.076
+```
+
+using two rate classes improves the IC from 4273.3 to 4234.950, but going to three rate classes is not justified; aBSREL will now fix a 2-bin &omega; distribution for Node1 and move to the next branch. When all branches are done, a summary of inferred model complexity will be printed to the screen.
