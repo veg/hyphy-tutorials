@@ -451,3 +451,9 @@ After step 10, for each codon, a line like this will be printed (this will also 
 * LRT is the likelihood ratio test statistic obtained relative to the null which sets &beta;2  &le; &alpha;
 * p is the p-value for positive selection at this site
 * if *P is displayed at the end of the line, the p-value is at or below the threshold chosen in step 9.
+
+Questions
+
+1. Find sites detected as selected by MEME, but not by FUBAR. What makes them different from those which are detected by both methods?
+2. Using R (or another data analysis package), plot how LRT (or p-value) varies over sites.
+3. Are the p-values of MEME correlated with posterior probabilities of positive selection of FUBAR (use a non-parameteric associaton test, e.g. rank correlation).
