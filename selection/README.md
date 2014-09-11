@@ -3,7 +3,7 @@ Selection detection.
 
 __Data files__
 
-All the alignment files used here are included in the `data` directory or, alternatively, in [this .zip file](http://github.com/veg/hyphy). 
+All the alignment files used here are included in the [data directory](data).
 
 __Notation__
 
