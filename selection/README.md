@@ -183,7 +183,7 @@ Branch omega values
 	2.5%     = 0.1475094738891478
 	97.5%    = 10
 	Max      = 10
-	```
+```
 
 Next, aBSREL sorts all the branches by length (longest first), and tries to greedily add &omega; categories to one branch at a time, until the addition is no longer justified by AIC-c scores. For example, for *Node1*
 
