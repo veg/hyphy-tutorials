@@ -120,6 +120,8 @@ The results of this *a priori* analysis are
 [BUSTED] Fitting the unconstrained branch-site model 
 [BUSTED] Log(L) = -2031.317686315219. Unrestricted class omega = 509.675292896259 (weight = 0.07817272825843137) 
 [BUSTED] Fitting the branch-site model that disallows omega > 1 among foreground branches 
+[BUSTED] Log(L) = -2050.106555576094 
+[BUSTED] Likelihood ratio test for episodic positive selection, p = 4.392065044989124e-10 
 ```
 
 Questions.
