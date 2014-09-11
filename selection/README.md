@@ -311,7 +311,7 @@ Use FUBAR to find sites which have experienced pervasive diversification.
 
 >FUBAR is a [published method](http://mbe.oxfordjournals.org/content/30/5/1196) which is intended to supercede (by dint of its speed and statistical performance), previous REL and FEL methods. 
 
-We continue use the `WestNileVirus_NS3.fas` dataset from the previous example, to identify individual sites which have exprienced pervasive diversification over the entire tree. An analysis by [Brault et al](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2291521/)  using our older counting method (SLAC), found a single site subject to positive selection (249).
+We continue to use the `WestNileVirus_NS3.fas` dataset from the previous example, to identify individual sites which have exprienced pervasive diversification over the entire tree. An analysis by [Brault et al](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2291521/)  using our older counting method (SLAC), found a single site subject to positive selection (249).
 
 1. Select the appropriate analysis to run
   * **_GUI_** Choose *Analysis:Standard Analyses:Selection/Recombination:FUBAR.bf*    
@@ -323,7 +323,7 @@ We continue use the `WestNileVirus_NS3.fas` dataset from the previous example, t
   * **_CLI_** Type **y** and hit Enter
 5. The file to process
   * **_GUI_** In the file dialog, navigate to and select `HIV.nex'`
-  * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.nex`. The analysis will now begin running (see output below but more propmts await). As BUSTED and aBSREL, FUBAR will write a number of `PREFIX.exention` files to disk. `PREFIX` is the path to the alignment file in this case, and the context of h
+  * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data//WestNileVirus_NS3.fas`. The analysis will now begin running (see output below but more propmts await). As BUSTED and aBSREL, FUBAR will write a number of `PREFIX.exention` files to disk. `PREFIX` is the path to the alignment file in this case, and the context of h
 6. Choose N to define an NxN grid (use the default 20)
   * **_GUI_** Type **20** into the bottom box of the console window and hit Enter
   * **_CLI_** Type **20** and hit Enter
@@ -390,3 +390,64 @@ Questions
   * How does the list of sites found by FUBAR compare with the MEDS paper?
   * And with the list of sites known for their as resistance associated for [NNRTI](http://hivdb.stanford.edu/DR/NNRTIResiNote.html) and [NRTI](http://hivdb.stanford.edu/DR/NRTIResiNote.html)?
 
+Use MEME to find sites which have experienced episodic diversification.
+----------------------------------
+
+>MEME is a [published method](http://www.plosgenetics.org/article/info%3Adoi%2F10.1371%2Fjournal.pgen.1002764) which is our default recommendation for finding individual sites under selection. It is MUCH slower than FUBAR, however, so there's room for both. 
+
+We continue to use the `WestNileVirus_NS3.fas` dataset from the previous example, to find sites where selection operated along a subset of branches, while the rest of the tree may have been strongly conserved (in **addition** to the type of sites found by FUBAR). 
+
+MEME tests each individual site separately; it runs quite slowly on a desktop, but very quickly on a cluster. You may also run MEME on [datamonkey](www.datamonkey.org) to speed up the process. MEME requires a lot of user input (this is a legacy issue and will be addressed in the upcoming HyPhy v3 release).
+
+1. Select the appropriate analysis to run
+  * **_GUI_** Choose *Analysis:Standard Analyses:Selection:QuickSelectionDetection.bf*    
+  * **_CLI_** When presented with the list of standard analysis options upon launch, choose *Selection/Recombination*, then option 9 (*Quickly test for positive selection using several approaches.*). 
+2. **Universal** genetic code option
+3. **New analysis** 
+4. The file to process
+  * **_GUI_** In the file dialog, navigate to and select `HIV.nex'`
+  * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas`. 
+4. **012345** (GTR combined with the codon model)
+5. Confirm that the tree included in the file will be used
+  * **_GUI_** Type **y** into the bottom box of the console window and hit Enter
+  * **_CLI_** Type **y** and hit Enter
+6. Save nucleotide model fit to `PREFIX.gtr`. We'll replace PREFIX is somewhere on the file system you wish to save the results to, e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3_meme`
+7. **Estimate dN/dS only**
+8. **MEME** (HyPhy will start running the analysis now)
+9. **0.1** for the p-value (MEME is a conservative test on small alignments)
+10. **N** (do not save fit files for individual codons)
+11. [This prompt will appear **after** the analysis is finished] Save the CSV file with analysis results to `PREFIX.csv`, e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3_meme`
+
+
+Output after step 8
+
+```
+Phase 1:Nucleotide Model (012345) Model Fit
+-7745.47552958391
+Phase 2:MG94x(012345) Model Fit
+Phase 3:Estimating dN/dS
+
+Nuc->codon scaling factor:3.091523288871338
+Raw scaling factor:3.091523288871338
+Tree scaling factor(S): 1
+
+Using dN/dS=0.02681170805062897
+Codon model:-6564.66073557536
+
+Phase 4: Ancestral State Reconstruction and Counting
+```
+
+After step 10, for each codon, a line like this will be printed (this will also be saved to the final CSV file).
+
+```
+| Codon:  249| Beta1:       0.86| P(Beta1):  0.00| Beta2:       2.50| P(Beta2):  1.00| alpha:       0.00| LRT:   7.62| p:  0.01| Log(L): -33.85 *P
+```
+
+* &alpha; is the estimate for the synonymous rate at this site shared by all branches 
+* &beta;1 is the estimate for the first non-synonymous rate; &beta;1 is always &le; &alpha;
+* P(&beta;1) is the proportion of branches at that site which are estimated to evolve with with &beta;1
+* &beta;2 is the estimate for the second non-synonymous rate; &beta;2 is unconstrained
+* P(&beta;2) is the proportion of branches at that site which are estimated to evolve with with &beta;2
+* LRT is the likelihood ratio test statistic obtained relative to the null which sets &beta;2  &le; &alpha;
+* p is the p-value for positive selection at this site
+* if *P is displayed at the end of the line, the p-value is at or below the threshold chosen in step 9.
