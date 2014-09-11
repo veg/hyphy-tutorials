@@ -61,6 +61,8 @@ The `R` parameter denotes the global &omega; ratio and is the object of this ana
 Running alignment-wide tests for episodic diversification (BUSTED).
 ------------------------------------------------------------------
 
+>BUSTED is a method we are currently preparing for publication. It has been extensively tested and shows better power and accuracy than either ["branch-site" models in PAML](http://mbe.oxfordjournals.org/content/24/5/1219.short), or the ["covarion" style models](http://mbe.oxfordjournals.org/content/early/2013/10/16/molbev.mst198)
+
 We will perform branch-site model-based tests for episodic selection affecting a proportion of sites in the alignment along a proportion of branches in the tree (i.e. is there evidence of selection **somewhere** in the alignment). The data set in we are using includes partial clonal HIV-1 env sequences from epidemiologically linked partners (source and recipient)
 
 1. Select the appropriate analysis to run
@@ -96,7 +98,7 @@ In addition to this output, HyPhy will also generate a [JSON](http://json.org) f
 
 ### Testing for selection on an *a priori* specifed background
 
-The tree in the `HIV.fas` is annotated with {} to indicate the set of test (foreground) branches. BUSTED will only constrain &omega; < 1 on these branches (allowing the rest of the tree to have its own &omega; distribution) during testing.
+The tree in the `HIV.fas` is annotated with {} to indicate the set of test (foreground) branches; in this case the branch being tested is the *transmission* branch, i.e. the one separating the source and the recipient in the phylogenetic tree. BUSTED will only constrain &omega; < 1 on these branches (allowing the rest of the tree to have its own &omega; distribution) during testing.
 
 An annotated Newick string looks like this:
 
@@ -107,6 +109,23 @@ An annotated Newick string looks like this:
 >(D20_234:0,D20_237:0):0.005843978498632621):0.01022675723558638,
 >(D20_230:0.02979851732996924,D20_231:0.006905678660095517):0.02444611465196596):0.005946252173834307);
 
+Repeat the analysis from the previous section, choosing option 4 (**Set Test**) in step 5. Note that you could also manually select the set of branches to test in the same dialog. 
 
+The results of this *a priori* analysis are
+
+```
+[BUSTED] Selected 1 branches as the test (foreground) set: Node1 
+[BUSTED] Obtaining initial branch lengths under the GTR model 
+[BUSTED] Log(L) = -2114.132336771765 
+[BUSTED] Fitting the unconstrained branch-site model 
+[BUSTED] Log(L) = -2031.317686315219. Unrestricted class omega = 509.675292896259 (weight = 0.07817272825843137) 
+[BUSTED] Fitting the branch-site model that disallows omega > 1 among foreground branches 
+```
+
+Questions.
+
+1. Explain why the log-likelihood for the unconstrained model is higher for the case when *a priori* branches are tested? 
+2. Do these results suggest that the transmission branch is evolving differently from the rest of the tree?
+3. If the a priori analysis had a negative result (no selection on the transmission branch), might it still be possible to find evidence of selection in the **All** branches analysis?
 
 
