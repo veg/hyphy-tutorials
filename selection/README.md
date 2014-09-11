@@ -324,7 +324,14 @@ We continue use the `WestNileVirus_NS3.fas` dataset from the previous example, t
 5. The file to process
   * **_GUI_** In the file dialog, navigate to and select `HIV.nex'`
   * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.nex`. The analysis will now begin running (see output below but more propmts await). As BUSTED and aBSREL, FUBAR will write a number of `PREFIX.exention` files to disk. `PREFIX` is the path to the alignment file in this case, and the context of h
-6. 
+6. Choose N to define an NxN grid (use the default 20)
+  * **_GUI_** Type **20** into the bottom box of the console window and hit Enter
+  * **_CLI_** Type **20** and hit Enter
+7. Choose the number of MCMC chains to run (use **3**)
+8. Specify Markov chain parameters (use suggested defaults, i.e. **2000000**, **1000000**, **100**, **0.05**)
+  * **_GUI_** Type **3** into the bottom box of the console window and hit Enter
+  * **_CLI_** Type **3** and hit Enter
+
   
 Output after Step 5
 ```
@@ -336,4 +343,48 @@ FUBAR will write intermediate and result files to
 	Length of tree 1 (substitutions/site) = 0.672169357304808
 [DIAGNOSTIC] FUBAR wrote the self-contained nucleotide fit file to /Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas.gtr_fit
 ```
+Output after Step 6
+```
+[DIAGNOSTIC] FUBAR will use a 20X20 grid
+[FUBAR PHASE 2] Determining appropriate branch scaling using the 20X20 grid points.
+Computing the likelihood function on grid points 400/400 00:00:37	Best scaling achieved for dN/dS =  0.03.
+	Computing site-by-site likelihoods at 20X20 grid points
+Computing the likelihood function on grid points 400/400 00:00:42	Finished with likelihood calculations. Achieved throughput of  5.06 calculations/second
+[DIAGNOSTIC] FUBAR wrote the self-contained codon fit file to /Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas.codon_fit
+[DIAGNOSTIC] FUBAR wrote the the site likelihoods file to /Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas.grid_info
+```
+Output after Step 8
+
+```
+[FUBAR PHASE 3] Running an MCMC chain (ID 0) to obtain a posterior sample of grid point weights: 2000000 total steps, of which 1000000 will be discarded as burn-in, and sampling every 10000 steps. Dirichlet prior concentration parameter = 0.5.
+Running MCMC chain ID 0. Current step: 2000000/2000000. Mean sampled log(L) = -6611.055623328417. Acceptance rate = 0.03164501582250791
+[FUBAR PHASE 3] Running an MCMC chain (ID 1) to obtain a posterior sample of grid point weights: 2000000 total steps, of which 1000000 will be discarded as burn-in, and sampling every 10000 steps. Dirichlet prior concentration parameter = 0.5.
+Running MCMC chain ID 1. Current step: 2000000/2000000. Mean sampled log(L) = -6612.133042793967. Acceptance rate = 0.02588501294250647
+[FUBAR PHASE 3] Running an MCMC chain (ID 2) to obtain a posterior sample of grid point weights: 2000000 total steps, of which 1000000 will be discarded as burn-in, and sampling every 10000 steps. Dirichlet prior concentration parameter = 0.5.
+Running MCMC chain ID 2. Current step: 2000000/2000000. Mean sampled log(L) = -6615.957107890772. Acceptance rate = 0.03453851726925863
+[FUBAR PHASE 3 DONE] Finished running the MCMC chains; drew 3x100 samples from chains of length 2000000 after discarding 1000000 burn-in steps. Achieved throughput of  66667 moves/sec.
+
+[DIAGNOSTIC] FUBAR wrote samples from 3 independent chains to /Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas.samples[0-2]
+
+
+Tabulating results for site 618/619 00:00:01
+[DIAGNOSTIC] FUBAR wrote the results of its analysis to /Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas.fubar.csv
+```
+
+Final results
+
+```
+[RESULTS] At posterior probability >= 0.9 there were 1 sites under diversifying positive selection, of which  0.02 [0 - 0] are expected to be false positives.
+
+Codon	Prob[dN/dS>1]	EBF[dN/dS]>1	PSRF	N_eff
+249	0.9829078732013796	452.7087197125555	1.038336288242064	36.69553290167204
+```
+
+Questions
+
+1. Try the same analysis with different grid sizes (5,10,30). How do the run times change? Do the results change?
+2. Run FUBAR with using the same settings on a large HIV RT dataset (>400 sequences) `HIV_RT.nex`, which was previously analyzed by us using a [dedicated method for finding directional selection, MEDS] (http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1002507). 
+  * How does FUBAR time scale with the number of sequences?
+  * How does the list of sites found by FUBAR compares with the MEDS paper?
+  * And with the list of sites known for their as resistance associated for [NNRTI](http://hivdb.stanford.edu/DR/NNRTIResiNote.html) and [NRTI](http://hivdb.stanford.edu/DR/NRTIResiNote.html)?
 
