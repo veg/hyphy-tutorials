@@ -323,8 +323,10 @@ We continue use the `WestNileVirus_NS3.fas` dataset from the previous example, t
   * **_CLI_** Type **y** and hit Enter
 5. The file to process
   * **_GUI_** In the file dialog, navigate to and select `HIV.nex'`
-  * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.nex`
-The analysis will now begin running (but more propmts await).
+  * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.nex`. The analysis will now begin running (see output below but more propmts await). As BUSTED and aBSREL, FUBAR will write a number of `PREFIX.exention` files to disk. `PREFIX` is the path to the alignment file in this case, and the context of h
+6. 
+  
+Output after Step 5
 ```
 FUBAR will write intermediate and result files to
 /Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas.extension
@@ -334,4 +336,4 @@ FUBAR will write intermediate and result files to
 	Length of tree 1 (substitutions/site) = 0.672169357304808
 [DIAGNOSTIC] FUBAR wrote the self-contained nucleotide fit file to /Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas.gtr_fit
 ```
-As BUSTED and aBSREL, FUBAR will write a number of `PREFIX.exention` files to disk. `PREFIX` is the path to the alignment file in this case, and the context of h
+
