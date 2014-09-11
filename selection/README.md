@@ -22,7 +22,7 @@ or a command line you will execute in terminal with the command line version of 
 [BUSTED] Fitting the unconstrained branch-site model 
 ``` 
 
-Estimating alignment-wide &omega;.
+Estimate alignment-wide &omega;.
 ----------------------------------
 
 1. Select the appropriate analysis to run
@@ -58,7 +58,7 @@ Tree givenTree=((((((HNY1999:0.001101810046549539,NY99_EQHS:0.001086758734282518
 
 The `R` parameter denotes the global &omega; ratio and is the object of this analysis.
 
-Running alignment-wide tests for episodic diversification (BUSTED).
+Run alignment-wide tests for episodic diversification (BUSTED).
 ------------------------------------------------------------------
 
 >BUSTED is a method we are currently preparing for publication. It has been extensively tested and shows better power and accuracy than either ["branch-site" models in PAML](http://mbe.oxfordjournals.org/content/24/5/1219.short), or the ["covarion" style models](http://mbe.oxfordjournals.org/content/early/2013/10/16/molbev.mst198)
@@ -130,7 +130,7 @@ Questions.
 2. Do these results suggest that the transmission branch is evolving differently from the rest of the tree?
 3. If the a priori analysis had a negative result (no selection on the transmission branch), might it still be possible to find evidence of selection in the **All** branches analysis?
 
-Using aBSREL to find lineages which have experienced episodic diversification.
+Use aBSREL to find lineages which have experienced episodic diversification.
 ----------------------------------
 
 >aBSREL is a method we are currently preparing for publication. It is an extension of our popular [BS-REL model](http://www.ncbi.nlm.nih.gov/pubmed/21670087), which performs a complexity analysis and model selection prior to doing hypothesis testing. It runs much faster than BS-REL and has better statistical properies.
@@ -306,4 +306,32 @@ Questions.
 3. Use the web-app to compare the list of branches which would have p-values &le; 0.05 without the multiple test correction. Are the lists notably different? 
 
 
+Use FUBAR to find sites which have experienced pervasive diversification.
+----------------------------------
 
+>FUBAR is a [published method](http://mbe.oxfordjournals.org/content/30/5/1196) which is intended to supercede (by dint of its speed and statistical performance), previous REL and FEL methods. 
+
+We continue use the `WestNileVirus_NS3.fas` dataset from the previous example, to identify individual sites which have exprienced pervasive diversification over the entire tree. An analysis by [Brault et al](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2291521/)  using our older counting method (SLAC), found a single site subject to positive selection (249).
+
+1. Select the appropriate analysis to run
+  * **_GUI_** Choose *Analysis:Standard Analyses:Selection/Recombination:FUBAR.bf*    
+  * **_CLI_** When presented with the list of standard analysis options upon launch, choose *Selection/Recombination*, then option 1 (*Detect site-specific pervasive diversifying and purifying selection using the FUBAR (Fast Unbiased Bayesian AppRoximate) method on a multiple partition data set, e.g. produced by GARD.*). Note that, as suggested by the text, FUBAR can account for the confounding effect of recombination.
+2. **Universal** genetic code option
+3. **1** to specify that a single partition is being analyzed (you could specify more to correct for recombination).
+4. Confirm that the tree included in the file will be used
+  * **_GUI_** Type **y** into the bottom box of the console window and hit Enter
+  * **_CLI_** Type **y** and hit Enter
+5. The file to process
+  * **_GUI_** In the file dialog, navigate to and select `HIV.nex'`
+  * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.nex`
+The analysis will now begin running (but more propmts await).
+```
+FUBAR will write intermediate and result files to
+/Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas.extension
+
+[FUBAR PHASE 1] Optimizing relative branch lengths under the nucleotide REV model
+[FUBAR PHASE 1 FINISHED] log(L) = -7745.475529583914
+	Length of tree 1 (substitutions/site) = 0.672169357304808
+[DIAGNOSTIC] FUBAR wrote the self-contained nucleotide fit file to /Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas.gtr_fit
+```
+As BUSTED and aBSREL, FUBAR will write a number of `PREFIX.exention` files to disk. `PREFIX` is the path to the alignment file in this case, and the context of h
