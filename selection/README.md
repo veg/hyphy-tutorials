@@ -217,3 +217,46 @@ Next, aBSREL sorts all the branches by length (longest first), and tries to gree
 ```
 
 using two rate classes improves the IC from 4273.3 to 4234.950, but going to three rate classes is not justified; aBSREL will now fix a 2-bin &omega; distribution for Node1 and move to the next branch. When all branches are done, a summary of inferred model complexity will be printed to the screen.
+
+```
+[INFERRED MODEL COMPLEXITY]
+	mixtureTree.R20_239 has 1 site rate classes
+	mixtureTree.R20_245 has 1 site rate classes
+	mixtureTree.Node5 has 1 site rate classes
+	mixtureTree.R20_240 has 1 site rate classes
+	mixtureTree.R20_238 has 1 site rate classes
+	mixtureTree.R20_242 has 1 site rate classes
+	mixtureTree.Node4 has 1 site rate classes
+	mixtureTree.R20_241 has 1 site rate classes
+	mixtureTree.Node3 has 1 site rate classes
+	mixtureTree.R20_243 has 1 site rate classes
+	mixtureTree.Node2 has 1 site rate classes
+	mixtureTree.R20_244 has 1 site rate classes
+	mixtureTree.Node1 has 2 site rate classes
+	mixtureTree.D20_233 has 2 site rate classes
+	mixtureTree.D20_235 has 1 site rate classes
+	mixtureTree.D20_236 has 1 site rate classes
+	mixtureTree.D20_232 has 1 site rate classes
+	mixtureTree.Node17 has 1 site rate classes
+	mixtureTree.D20_234 has 1 site rate classes
+	mixtureTree.D20_237 has 1 site rate classes
+	mixtureTree.Node21 has 1 site rate classes
+	mixtureTree.Node16 has 2 site rate classes
+	mixtureTree.D20_230 has 2 site rate classes
+	mixtureTree.D20_231 has 1 site rate classes
+	mixtureTree.Node24 has 2 site rate classes
+	mixtureTree.Node15 has 1 site rate classes
+```
+
+Note that only a few branches support 2 &omega; classes and the majority are well-explained without any site-to-site variation. In the next phase, aBSREL optimizes all parameters in the just inferred model model, and when that is done
+
+```
+[PHASE 2] Fitting the full LOCAL alternative model (no constraints)
+
+Log L = -2010.311681036163 with 76 degrees of freedom, IC = 4175.206456312008
+((((((R20_239:0.001181905234412956,R20_245:0.003572863589321294)Node5:0.002382159141280985,R20_240:0.003554675856702284,R20_238:0,R20_242:0.00717131672360257)Node4:0.001174549675528636,R20_241:0.003575241391516638)Node3:0.001572673086346462,R20_243:0.006743813724935903)Node2:0.00414957933238273,R20_244:0.02083895650824434)Node1:0.3137837876935897,D20_233:1.824910162480461,(((D20_235:0,D20_236:0,D20_232:0)Node17:0.00691709620521831,(D20_234:0,D20_237:0)Node21:0.005338269529420897)Node16:0.2914940662473469,(D20_230:1.412974779777337,D20_231:0.007818737526001249)Node24:0.04659201750116307)Node15:0.003377490873425993)
+
+```
+
+the analysis will proceed to test all the branches we selected (in step 8, which is *All*) to see if there is a proportion of sites with &omega; > 1 at that site, and whose removal would cause a significant drop in log-likelihood. As a shortcut, if the branch has no sites with &omega; > 1, it will not be tested (one can just set the p-value to 0.5).
+
