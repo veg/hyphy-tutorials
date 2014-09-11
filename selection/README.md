@@ -61,15 +61,15 @@ The `R` parameter denotes the global &omega; ratio and is the object of this ana
 Running alignment-wide tests for episodic diversification (BUSTED).
 ------------------------------------------------------------------
 
-We will perform branch-site model-based tests for episodic selection affecting a proportion of sites in the alignment along a proportion of branches in the tree (i.e. is there evidence of selection **somewhere** in the alignment). The data set in question is one from [Zhang et al MBE 2005](http://www.ncbi.nlm.nih.gov/pubmed/16107592).
+We will perform branch-site model-based tests for episodic selection affecting a proportion of sites in the alignment along a proportion of branches in the tree (i.e. is there evidence of selection **somewhere** in the alignment). The data set in we are using includes partial clonal HIV-1 env sequences from epidemiologically linked partners (source and recipient)
 
 1. Select the appropriate analysis to run
   * **_GUI_** Choose *Analysis:Standard Analyses:Positive Selection:BUSTED.bf*    
   * **_CLI_** When presented with the list of standard analysis options upon launch, choose *Positive Selection*, then option 4 (*Run the Branch-site Unrestricted Statistical Test for Episodic Diversification to test for evidence of episodic alignment-wide selective pressure.*)
 2. **Universal** genetic code option
 3. The file to process
-  * **_GUI_** In the file dialog, navigate to and select `brca1-chimp-human-ann.nex'`
-  * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/brca1-chimp-human-ann.nex`
+  * **_GUI_** In the file dialog, navigate to and select `HIV.nex'`
+  * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.fas`
 4. Confirm that the tree included in the file will be used
   * **_GUI_** Type **y** into the bottom box of the console window and hit Enter
   * **_CLI_** Type **y** and hit Enter
@@ -79,18 +79,34 @@ We will perform branch-site model-based tests for episodic selection affecting a
 The analysis will now run for a few minutes and produce the following output
 
 ```
-[BUSTED] Selected 17 branches as the test (foreground) set: Homo_sapiens,Pan_troglodytes,Node7,Gorilla_gorilla,Node6,Pongo_pygmaeus,Node5,Macaca_mulatta,Node4,Alouatta_seniculus,Node3,Otolemur_crassicaudatus,Node2,Cynocephalus_variegatus,Node1,Mus_musculus,Rattus_norvegicus 
+[BUSTED] Selected 26 branches as the test (foreground) set: R20_239,R20_245,Node5,R20_240,R20_238,R20_242,Node4,R20_241,Node3,R20_243,Node2,R20_244,Node1,D20_233,D20_235,D20_236,D20_232,Node17,D20_234,D20_237,Node21,Node16,D20_230,D20_231,Node24,Node15 
 [BUSTED] Obtaining initial branch lengths under the GTR model 
-[BUSTED] Log(L) = -13512.64885365356 
+[BUSTED] Log(L) = -2114.132336771765 
 [BUSTED] Fitting the unconstrained branch-site model 
+[BUSTED] Log(L) = -2039.990744000631. Unrestricted class omega = 105.3390132524982 (weight = 0.0202977472726123) 
+[BUSTED] Fitting the branch-site model that disallows omega > 1 among foreground branches ```
 ```
 
 For example, in this case the analysis inferred that 
 
-1. A proportion of sites () is evolving with dN/dS > 1 along some of the branches
+1. A proportion of sites (0.02) is evolving with dN/dS > 1 (105) along a subset of the branches (it is not known which).
 2. Forcing dN/dS = 1 provides a significantly worse (p = ) fit to the data, i.e. rejects the hypothesis of no positive selection in the alignmnent.
 
 In addition to this output, HyPhy will also generate a [JSON](http://json.org) file with a more detailed analysis output. You can visualize the results by uploading the file to this [web app (experimental)](http://octamonkey.ucsd.edu/BUSTED/ui/busted.html).
+
+### Testing for selection on an *a priori* specifed background
+
+The tree in the `HIV.fas` is annotated with {} to indicate the set of test (foreground) branches. BUSTED will only constrain &omega; < 1 on these branches (allowing the rest of the tree to have its own &omega; distribution) during testing.
+
+An annotated Newick string looks like this:
+
+>((((((R20_239:0.001179071552709126,R20_245:0.003569393318767422):0.002373643652152119,R20_240:0.00354445225954759,
+>R20_238:0,R20_242:0.007143686359514547):0.001169032517101171,R20_241:0.003555888002841892):0.001829250056707198,
+>R20_243:0.006486065374683752):0.003845820830922537,R20_244:0.02113434306810657)**{Test}**:0.03269082780807394,
+>D20_233:0.02550919363771013,(((D20_235:0,D20_236:0,D20_232:0):0.006433904687642939,
+>(D20_234:0,D20_237:0):0.005843978498632621):0.01022675723558638,
+>(D20_230:0.02979851732996924,D20_231:0.006905678660095517):0.02444611465196596):0.005946252173834307);
+
 
 
 
