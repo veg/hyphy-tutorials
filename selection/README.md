@@ -3,7 +3,7 @@ Selection detection.
 
 __Data files__
 
-All the alignment files used here are included in the [data directory](data).
+All the alignment files used here are included in the [data directory](data); you may find it convenient to download the zip file with all the files from that directory and unpack it on your machine.
 
 __Notation__
 
