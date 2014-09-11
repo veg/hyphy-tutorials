@@ -387,6 +387,6 @@ Questions
   * Are the results robust to the choice of N?
 2. Run FUBAR with using the same settings on a large HIV RT dataset (>400 sequences) `HIV_RT.nex`, which was previously analyzed by us using a [dedicated method for finding directional selection, MEDS] (http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1002507). 
   * How does FUBAR time scale with the number of sequences?
-  * How does the list of sites found by FUBAR compares with the MEDS paper?
+  * How does the list of sites found by FUBAR compare with the MEDS paper?
   * And with the list of sites known for their as resistance associated for [NNRTI](http://hivdb.stanford.edu/DR/NNRTIResiNote.html) and [NRTI](http://hivdb.stanford.edu/DR/NRTIResiNote.html)?
 
