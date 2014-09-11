@@ -71,7 +71,7 @@ We will perform branch-site model-based tests for episodic selection affecting a
 2. **Universal** genetic code option
 3. The file to process
   * **_GUI_** In the file dialog, navigate to and select `HIV.nex'`
-  * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.fas`
+  * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.nex`
 4. Confirm that the tree included in the file will be used
   * **_GUI_** Type **y** into the bottom box of the console window and hit Enter
   * **_CLI_** Type **y** and hit Enter
@@ -94,7 +94,7 @@ For example, in this case the analysis inferred that
 1. A proportion of sites (0.02) is evolving with dN/dS > 1 (105) along a subset of the branches (it is not known which).
 2. Forcing dN/dS = 1 provides a significantly worse (p = ) fit to the data, i.e. rejects the hypothesis of no positive selection in the alignmnent.
 
-In addition to this output, HyPhy will also generate a [JSON](http://json.org) file with a more detailed analysis output. You can visualize the results by uploading the file to this [web app (experimental)](http://octamonkey.ucsd.edu/BUSTED/ui/busted.html).
+In addition to this output, HyPhy will also generate a [JSON](http://json.org) file with a more detailed analysis output. The JSON will be written to same directory as the input alignment file, with `BUSTED.json` appended to the file name, e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.nex.BUSTED.json`  You can visualize the results by uploading the file to this [web app (experimental)](http://octamonkey.ucsd.edu/BUSTED/ui/busted.html).
 
 ### Testing for selection on an *a priori* specifed background
 
