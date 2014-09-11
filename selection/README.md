@@ -1,7 +1,7 @@
 Selection detection.
 ====================
 
-__Data sources__
+__Data files__
 
 All the alignment files used here are included in the `data` directory or, alternatively, in [this .zip file](http://github.com/veg/hyphy). 
 
@@ -130,4 +130,7 @@ Questions.
 2. Do these results suggest that the transmission branch is evolving differently from the rest of the tree?
 3. If the a priori analysis had a negative result (no selection on the transmission branch), might it still be possible to find evidence of selection in the **All** branches analysis?
 
+Using aBSREL to find lineages which have experienced episodic diversification.
+----------------------------------
 
+>aBSREL is a method we are currently preparing for publication. It is an extension of our popular [BS-REL model](www.ncbi.nlm.nih.gov/pubmed/21670087), which performs a complexity analysis and model selection prior to doing hypothesis testing. It runs much faster than BS-REL and has better statistical properies.
