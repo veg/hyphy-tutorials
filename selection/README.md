@@ -61,7 +61,7 @@ The `R` parameter denotes the global &omega; ratio and is the object of this ana
 Run alignment-wide tests for episodic diversification (BUSTED).
 ------------------------------------------------------------------
 
->BUSTED is a method we are currently preparing for publication. It has been extensively tested and shows better power and accuracy than either ["branch-site" models in PAML](http://mbe.oxfordjournals.org/content/24/5/1219.short), or the ["covarion" style models](http://mbe.oxfordjournals.org/content/early/2013/10/16/molbev.mst198)
+>BUSTED is a method we have recently published in [MBE](http://mbe.oxfordjournals.org/content/early/2015/02/19/molbev.msv035.short). It has been extensively tested and shows better power and accuracy than either ["branch-site" models in PAML](http://mbe.oxfordjournals.org/content/24/5/1219.short), or the ["covarion" style models](http://mbe.oxfordjournals.org/content/early/2013/10/16/molbev.mst198)
 
 We will perform branch-site model-based tests for episodic selection affecting a proportion of sites in the alignment along a proportion of branches in the tree (i.e. is there evidence of selection **somewhere** in the alignment). The data set in we are using includes partial clonal HIV-1 env sequences from epidemiologically linked partners (source and recipient)
 
@@ -83,16 +83,18 @@ The analysis will now run for a few minutes and produce the following output
 ```
 [BUSTED] Selected 26 branches as the test (foreground) set: R20_239,R20_245,Node5,R20_240,R20_238,R20_242,Node4,R20_241,Node3,R20_243,Node2,R20_244,Node1,D20_233,D20_235,D20_236,D20_232,Node17,D20_234,D20_237,Node21,Node16,D20_230,D20_231,Node24,Node15 
 [BUSTED] Obtaining initial branch lengths under the GTR model 
-[BUSTED] Log(L) = -2114.132336771765 
+[BUSTED] Log(L) = -2114.132336669451 
 [BUSTED] Fitting the unconstrained branch-site model 
-[BUSTED] Log(L) = -2039.990744000631. Unrestricted class omega = 105.3390132524982 (weight = 0.0202977472726123) 
-[BUSTED] Fitting the branch-site model that disallows omega > 1 among foreground branches ```
+[BUSTED] Log(L) = -2039.993050440813. Unrestricted class omega = 104.6392241298346 (weight = 0.02033604464412678) 
+[BUSTED] Fitting the branch-site model that disallows omega > 1 among foreground branches 
+[BUSTED] Log(L) = -2076.666564874596 
+[BUSTED] Likelihood ratio test for episodic positive selection, p = 1.110223024625157e-16 
 ```
 
 For example, in this case the analysis inferred that 
 
 1. A proportion of sites (0.02) is evolving with dN/dS > 1 (105) along a subset of the branches (it is not known which).
-2. Forcing dN/dS = 1 provides a significantly worse (p = ) fit to the data, i.e. rejects the hypothesis of no positive selection in the alignmnent.
+2. Forcing dN/dS = 1 provides a significantly worse (p ~ 10<sup>-16</sup>) fit to the data, i.e. rejects the hypothesis of no positive selection in the alignmnent.
 
 In addition to this output, HyPhy will also generate a [JSON](http://json.org) file with a more detailed analysis output. The JSON will be written to same directory as the input alignment file, with `BUSTED.json` appended to the file name, e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.nex.BUSTED.json`  You can visualize the results by uploading the file to this [web app](http://veg.github.io/hyphy-vision/busted/).
 
@@ -116,12 +118,12 @@ The results of this *a priori* analysis are
 ```
 [BUSTED] Selected 1 branches as the test (foreground) set: Node1 
 [BUSTED] Obtaining initial branch lengths under the GTR model 
-[BUSTED] Log(L) = -2114.132336771765 
+[BUSTED] Log(L) = -2114.132336105244 
 [BUSTED] Fitting the unconstrained branch-site model 
-[BUSTED] Log(L) = -2031.317686315219. Unrestricted class omega = 509.675292896259 (weight = 0.07817272825843137) 
+[BUSTED] Log(L) = -2031.32144979077. Unrestricted class omega = 507.3223797735486 (weight = 0.07813130964775564) 
 [BUSTED] Fitting the branch-site model that disallows omega > 1 among foreground branches 
-[BUSTED] Log(L) = -2050.106555576094 
-[BUSTED] Likelihood ratio test for episodic positive selection, p = 4.392065044989124e-10 
+[BUSTED] Log(L) = -2050.098522348627 
+[BUSTED] Likelihood ratio test for episodic positive selection, p = 7.00198221625925e-09 
 ```
 
 Questions.
