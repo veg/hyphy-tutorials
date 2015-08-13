@@ -3,102 +3,117 @@ Selection detection.
 
 __Data files__
 
-All the alignment files used here are included in the [data directory](data); you may find it convenient to download the [zip file](https://github.com/veg/hyphy-tutorials/blob/master/selection/data/files.zip?raw=true) with all the files from that directory and unpack it on your machine.
+All the example alignment files used here are available in this [data directory](data).
+You may find it convenient to download the [zip file](https://github.com/veg/hyphy-tutorials/blob/master/selection/data/files.zip?raw=true)
+with all the files from that directory, and unpack it on your machine.
 
 __Notation__
 
- We will use the following notation.
+We will use the following notation.
 
-1. `filename` refers to file in the file system.
-2. **Option** refers to an analysis option that you will select when prompted by HyPhy
-3. *Menu item* refers to a menu option you will select in the Mac OS X or Windows GUI version of HyPhy,
-or a command line you will execute in terminal with the command line version of HyPhy.
-4. The following formatting refers to HyPhy text output to the screen.
+1. `filename` refers to a file on your local file system.
+2. **Option** refers to an analysis option that you will select when prompted by HyPhy.
+3. *Menu item* refers to a menu option you will select in the Mac OS X or Windows GUI (Graphical User Interface) version of HyPhy,
+or a command line you will supply in terminal with the command line version of HyPhy.
+4. The following formatting denotes text output to the screen by HyPhy.
+5. <tt>X</tt> refers to a model parameter X.
 
 ```
 [BUSTED] Selected 35 branches as the test (foreground) set: RABENSBURG_ISOLATE,WNFCG,SPU116_89,Node11,Node9,KUNCG,Node8,..
-[BUSTED] Obtaining initial branch lengths under the GTR model 
-[BUSTED] Log(L) = -7745.475588071066 
-[BUSTED] Fitting the unconstrained branch-site model 
-``` 
+[BUSTED] Obtaining initial branch lengths under the GTR model
+[BUSTED] Log(L) = -7745.475588071066
+[BUSTED] Fitting the unconstrained branch-site model
+```
 
 Estimate alignment-wide &omega;.
-----------------------------------
+--------------------------------
 
 1. Select the appropriate analysis to run
-  * **_GUI_** Choose *Analysis:Standard Analyses:Basic Analyses:AnalyzeCodonData.bf*    
+  * **_GUI_** Choose *Analysis:Standard Analyses:Basic Analyses:AnalyzeCodonData.bf*
   * **_CLI_** When presented with the list of standard analysis options upon launch, choose *Basic Analyses*, then option 1 (*Analyse codon data with a variery of standard models using given tree.*)
 2. **Universal** genetic code option
 3. The file to process
   * **_GUI_** In the file dialog, navigate to and select `WestNileVirus_NS3.fas`
-  * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas`
-4. **MG94CUSTOMCF3X4** model; the Muse Gaut 94 model with the CF3x4 frequency estimator.
+  * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g.
+  `/Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas`
+4. **MG94CUSTOMCF3X4** model; the [Muse Gaut 94](http://www.ncbi.nlm.nih.gov/pubmed/7968485) model with the [CF3x4](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0011230) frequency estimator.
 5. **Global** model parameter option; estimate rate parameters jointly from all sites and branches.
-6. **012345** nucleotide substitution rates; estimate the REV (5 rates) model.
+6. **012345** nucleotide substitution rates; estimate the general time reversible (GTR, 5 rates) model.
 7. Confirm that the tree included in the file will be used
-  * **_GUI_** Type **y** into the bottom box of the console window and hit Enter
-  * **_CLI_** Type **y** and hit Enter
-8. **Estimate** branch lengths directly 
+  * **_GUI_** Type **y** into the bottom box of the console window and hit "Enter"
+  * **_CLI_** Type **y** and hit "Enter"
+8. **Estimate** branch lengths directly
 
 The output should look like this
 
 ```
-_____________RESULTS______________
-Log Likelihood = -6413.50468054519;
+______________RESULTS______________
+Log Likelihood = -6413.50468994167;
 Shared Parameters:
-R=0.008551668421244748
-GT=0.2303049266395047
-CT=1.979616959919051
-CG=0.02076342133619539
-AC=0.2427767402648906
-AT=0.305486614391144
+R=0.008554728605153052
+GT=0.2304130540278939
+CT=1.980433103063405
+CG=0.02076407465387236
+AC=0.2429317894558708
+AT=0.3056674355138213
 
-Tree givenTree=((((((HNY1999:0.001101810046549539,NY99_EQHS:0.001086758734282518)Node6:0,NY99_FLAMINGO:0)Node5:0,MEX03:0.003273655978248368)Node4:0.001043835131241961,IS_98:0.002238498097897219)Node3:0.010810739226833,PAH001:0.009944571986406506)Node2:0.006482211341279835,AST99:0.01679365520732371,((((RABENSBURG_ISOLATE:1.052567309814534,(WNFCG:0.01055548963353968,SPU116_89:0.005665307241141077)Node19:0.5074246792718854)Node17:0.5771347850262071,KUNCG:0.08762054624013382)Node16:0.06944654080511896,(ETHAN4766:0.02385065624081109,(CHIN_01:0.01206043931478093,EG101:0.0150585435082636)Node25:0.007682130398194246)Node23:0.003443456948139096)Node15:0.01851194522198735,(((ITALY_1998_EQUINE:0.009036520833779711,PAAN001:0.007872692859959647)Node30:0.002694380908937295,(RO97_50:0.001642958230190058,VLG_4:0.001082940442608445)Node33:0.002794297600634446)Node29:0.0007239312494192353,KN3829:0.003057891752907082)Node28:0.01098084206175212)Node14:0.009294085670252797);
+Tree givenTree=((((((HNY1999:0.001101769031624133,NY99_EQHS:0.001086960976295893)Node6:0,NY99_FLAMINGO:0)Node5:0,MEX03:0.003274315754343901)Node4:0.001043806707798637,IS_98:0.002238748746668788)Node3:0.01080942100371115,PAH001:0.009945298838723813)Node2:0.00648195799080456,AST99:0.01679320338294003,((((RABENSBURG_ISOLATE:1.052482136980589,(WNFCG:0.01054036890614152,SPU116_89:0.005680320583147054)Node19:0.5071405213386234)Node17:0.5769651657589495,KUNCG:0.0876261262814418)Node16:0.06943690102788631,(ETHAN4766:0.02384962743420599,(CHIN_01:0.01206156569823293,EG101:0.01505785099749145)Node25:0.007681762600759867)Node23:0.003445330111265085)Node15:0.01850670782361034,(((ITALY_1998_EQUINE:0.009036184170284364,PAAN001:0.007871526515098788)Node30:0.002694278241933474,(RO97_50:0.001643260566143832,VLG_4:0.00108290802860985)Node33:0.002794188452684344)Node29:0.0007239143604899481,KN3829:0.003057834726752784)Node28:0.01097938279679199)Node14:0.009293097884085551);
 ```
 
-The `R` parameter denotes the global &omega; ratio and is the object of this analysis.
+The <tt>R</tt> parameter denotes the global &omega; ratio and is the object of this analysis.
 
 Run alignment-wide tests for episodic diversification (BUSTED).
 ------------------------------------------------------------------
 
->BUSTED is a method we are currently preparing for publication. It has been extensively tested and shows better power and accuracy than either ["branch-site" models in PAML](http://mbe.oxfordjournals.org/content/24/5/1219.short), or the ["covarion" style models](http://mbe.oxfordjournals.org/content/early/2013/10/16/molbev.mst198)
+>BUSTED is a method described in [Murrell et al](http://www.ncbi.nlm.nih.gov/pubmed/25701167). It has been extensively tested and shows better power and accuracy than either ["branch-site" models in PAML](http://mbe.oxfordjournals.org/content/24/5/1219.short), or the ["covarion" style models](http://mbe.oxfordjournals.org/content/early/2013/10/16/molbev.mst198)
 
-We will perform branch-site model-based tests for episodic selection affecting a proportion of sites in the alignment along a proportion of branches in the tree (i.e. is there evidence of selection **somewhere** in the alignment). The data set in we are using includes partial clonal HIV-1 env sequences from epidemiologically linked partners (source and recipient)
+We will perform branch-site model-based tests for episodic selection affecting a proportion of sites in
+the alignment along a proportion of branches in the tree (i.e. is there evidence of selection **somewhere** in the alignment).
+The data set in we are using includes partial clonal HIV-1 env sequences from epidemiologically linked partners (source and recipient)
 
 1. Select the appropriate analysis to run
-  * **_GUI_** Choose *Analysis:Standard Analyses:Positive Selection:BUSTED.bf*    
+  * **_GUI_** Choose *Analysis:Standard Analyses:Positive Selection:BUSTED.bf*
   * **_CLI_** When presented with the list of standard analysis options upon launch, choose *Positive Selection*, then option 4 (*Run the Branch-site Unrestricted Statistical Test for Episodic Diversification to test for evidence of episodic alignment-wide selective pressure.*)
 2. **Universal** genetic code option
 3. The file to process
-  * **_GUI_** In the file dialog, navigate to and select `HIV.nex'`
+  * **_GUI_** In the file dialog, navigate to and select `HIV.nex`
   * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.nex`
 4. Confirm that the tree included in the file will be used
   * **_GUI_** Type **y** into the bottom box of the console window and hit Enter
   * **_CLI_** Type **y** and hit Enter
 5. Choose all branches to include in the test (**All**)
-  * **_CLI_** You will need to type **d** and hit Enter after selecting the **All** option to exit the selection dialog.
+  * **_CLI_** You will need to type **d** and hit "Enter" after selecting the **All** option to exit the selection dialog.
 
 The analysis will now run for a few minutes and produce the following output
 
 ```
-[BUSTED] Selected 26 branches as the test (foreground) set: R20_239,R20_245,Node5,R20_240,R20_238,R20_242,Node4,R20_241,Node3,R20_243,Node2,R20_244,Node1,D20_233,D20_235,D20_236,D20_232,Node17,D20_234,D20_237,Node21,Node16,D20_230,D20_231,Node24,Node15 
-[BUSTED] Obtaining initial branch lengths under the GTR model 
-[BUSTED] Log(L) = -2114.132336771765 
-[BUSTED] Fitting the unconstrained branch-site model 
-[BUSTED] Log(L) = -2039.990744000631. Unrestricted class omega = 105.3390132524982 (weight = 0.0202977472726123) 
-[BUSTED] Fitting the branch-site model that disallows omega > 1 among foreground branches ```
+[BUSTED] Selected 26 branches as the test (foreground) set: R20_239,R20_245,Node5,R20_240,R20_238,R20_242,Node4,R20_241,Node3,R20_243,Node2,R20_244,Node1,D20_233,D20_235,D20_236,D20_232,Node17,D20_234,D20_237,Node21,Node16,D20_230,D20_231,Node24,Node15
+[BUSTED] Obtaining initial branch lengths under the GTR model
+[BUSTED] Log(L) = -2114.132338577356
+[BUSTED] Fitting the unconstrained branch-site model
+[BUSTED] Log(L) = -2039.984377968945. Unrestricted class omega = 107.7325298172143 (weight = 0.02010898553566722)
+[BUSTED] Fitting the branch-site model that disallows omega > 1 among foreground branches
+[BUSTED] Log(L) = -2076.666564530368
+[BUSTED] Likelihood ratio test for episodic positive selection, p = 1.110223024625157e-16
 ```
 
-For example, in this case the analysis inferred that 
+For example, in this case the analysis inferred that
 
-1. A proportion of sites (0.02) is evolving with dN/dS > 1 (105) along a subset of the branches (it is not known which).
-2. Forcing dN/dS = 1 provides a significantly worse (p = ) fit to the data, i.e. rejects the hypothesis of no positive selection in the alignmnent.
+1. A proportion of sites (0.02) is evolving with dN/dS > 1 (107) along a subset of the branches (it is not known which specific branches).
+2. Forcing dN/dS = 1 provides a significantly worse (p &approx; 10<sup>-16</sup>) fit to the data, i.e. rejects the hypothesis of no positive selection in the alignmnent.
 
-In addition to this output, HyPhy will also generate a [JSON](http://json.org) file with a more detailed analysis output. The JSON will be written to same directory as the input alignment file, with `BUSTED.json` appended to the file name, e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.nex.BUSTED.json`  You can visualize the results by uploading the file to this [web app (experimental)](http://octamonkey.ucsd.edu/BUSTED/ui/busted.html).
+In addition to this output, HyPhy will also generate a [JSON](http://json.org) file with a more detailed analysis output.
+The JSON will be written to same directory as the input alignment file, with `BUSTED.json` appended to the file name, e.g.
+`/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.nex.BUSTED.json`
+You can visualize the results by loading the file to this [web app](http://veg.github.io/hyphy-vision/busted/).
 
 ### Testing for selection on an *a priori* specifed background
 
-The tree in the `HIV.fas` is annotated with {} to indicate the set of test (foreground) branches; in this case the branch being tested is the *transmission* branch, i.e. the one separating the source and the recipient in the phylogenetic tree. BUSTED will only constrain &omega; < 1 on these branches (allowing the rest of the tree to have its own &omega; distribution) during testing.
+The tree in the `HIV.nex` is annotated with {} to indicate the set of test (foreground) branches (e.g. you can use this [widget](http://veg.github.io/phylotree.js/) to select foreground
+branches and then export them to Newick using the *Newick:Export* menu dialog).
+
+in this case the branch being tested is the *transmission* branch, i.e. the one separating the source and the recipient in the phylogenetic tree.
+BUSTED will only constrain &omega; < 1 on these branches (allowing the rest of the tree to have its own &omega; distribution) during testing.
 
 An annotated Newick string looks like this:
 
@@ -109,36 +124,41 @@ An annotated Newick string looks like this:
 >(D20_234:0,D20_237:0):0.005843978498632621):0.01022675723558638,
 >(D20_230:0.02979851732996924,D20_231:0.006905678660095517):0.02444611465196596):0.005946252173834307);
 
-Repeat the analysis from the previous section, choosing option 4 (**Set Test**) in step 5. Note that you could also manually select the set of branches to test in the same dialog. 
+Repeat the analysis from the previous section, choosing option 4 (**Set Test**) in step 5.
+Note that you could also manually select the set of branches to test in the same dialog.
 
 The results of this *a priori* analysis are
 
 ```
-[BUSTED] Selected 1 branches as the test (foreground) set: Node1 
-[BUSTED] Obtaining initial branch lengths under the GTR model 
-[BUSTED] Log(L) = -2114.132336771765 
-[BUSTED] Fitting the unconstrained branch-site model 
-[BUSTED] Log(L) = -2031.317686315219. Unrestricted class omega = 509.675292896259 (weight = 0.07817272825843137) 
-[BUSTED] Fitting the branch-site model that disallows omega > 1 among foreground branches 
-[BUSTED] Log(L) = -2050.106555576094 
-[BUSTED] Likelihood ratio test for episodic positive selection, p = 4.392065044989124e-10 
+[BUSTED] Selected 1 branches as the test (foreground) set: Node1
+[BUSTED] Obtaining initial branch lengths under the GTR model
+[BUSTED] Log(L) = -2114.132339409427
+[BUSTED] Fitting the unconstrained branch-site model
+[BUSTED] Log(L) = -2031.305449888161. Unrestricted class omega = 526.0793380680087 (weight = 0.07817009929325522)
+[BUSTED] Fitting the branch-site model that disallows omega > 1 among foreground branches
+[BUSTED] Log(L) = -2050.103092373559
+[BUSTED] Likelihood ratio test for episodic positive selection, p = 6.859423140603838e-09
 ```
 
 Questions.
 
-1. Explain why the log-likelihood for the unconstrained model is higher for the case when *a priori* branches are tested? 
+0. Use the [web app](http://veg.github.io/hyphy-vision/busted/) to visualize the JSON result file from this analysis and
+compare the inferred &omega; distributions for the foreground and background branches.
+1. Explain why the log-likelihood for the unconstrained model is higher for the case when *a priori* branches are tested?
 2. Do these results suggest that the transmission branch is evolving differently from the rest of the tree?
-3. If the a priori analysis had a negative result (no selection on the transmission branch), might it still be possible to find evidence of selection in the **All** branches analysis?
+3. If the *a priori* analysis had a negative result (no selection along the transmission branch), might it still be possible to
+find evidence of selection in the **All** branches analysis?
 
 Use aBSREL to find lineages which have experienced episodic diversification.
 ----------------------------------
 
->aBSREL is a method we are currently preparing for publication. It is an extension of our popular [BS-REL model](http://www.ncbi.nlm.nih.gov/pubmed/21670087), which performs a complexity analysis and model selection prior to doing hypothesis testing. It runs much faster than BS-REL and has better statistical properies.
+>aBSREL is a method described in [Smith et al](http://www.ncbi.nlm.nih.gov/pubmed/25697341). It is an extension of our popular [BS-REL model](http://www.ncbi.nlm.nih.gov/pubmed/21670087), which performs a complexity analysis and model selection prior to doing hypothesis testing. It runs much faster than BS-REL and has better statistical properies.
 
-We continue using the `HIV.nex` dataset from the previous example, but now we are interested in scanning the phylogeny for all the branches where selection may have operated.  
+We continue using the `HIV.nex` dataset from the previous example, but now we are interested in scanning the phylogeny
+for all the branches where selection may have operated.
 
 1. Select the appropriate analysis to run
-  * **_GUI_** Choose *Analysis:Standard Analyses:Positive Selection:BranchSiteREL.bf*    
+  * **_GUI_** Choose *Analysis:Standard Analyses:Positive Selection:BranchSiteREL.bf*
   * **_CLI_** When presented with the list of standard analysis options upon launch, choose *Positive Selection*, then option 1 (*Use the random effects branch-site model (2010) to find lineages subject to episodic selection.*)
 2. **Universal** genetic code option
 3. **Yes** to choose the adaptive version of BSREL.
@@ -158,65 +178,68 @@ We continue using the `HIV.nex` dataset from the previous example, but now we ar
   * **_GUI_** In the file dialog, find a place to save the result file, naming it `HIV.aBSREL`.
   * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.aBSREL`
 
-The analysis will now run for several minutes and produce a lot of diagnostic output. 
+The analysis will now run for several minutes and produce a lot of diagnostic output.
 
-As the initial phase, aBSREL fits the standard Muse-Gaut 94 model which estimates a single &omega; for each branch and prints out model fit statistics. This is the simplest model that can be selected by aBSREL.
+As the initial phase, aBSREL fits the standard Muse-Gaut 94 model which estimates a single &omega;
+for each branch and prints out model fit statistics. This is the simplest model that can be selected by aBSREL.
 
 ```
 [PHASE 0] Fitting the local MG94 (no site-to-site variation) to obtain initial parameter estimates
 
-Log L = -2069.678248355542 with 66 degrees of freedom. IC = 4273.304085347947
+Log L = -2069.673152465337 with 66 degrees of freedom. IC = 4273.293893567537
 
 Branch omega values
 
 	Count    = 26
-	Mean     = 5.015095686511051
-	Median   = 1.91176633672278
-	Variance = 20.26920614013531
-	Std.Dev  = 4.502133509807912
-	COV      = 0.8977163729731343
-	Sum      = 130.3924878492873
-	Sq. sum  = 1160.660956869788
-	Skewness = 0.8548558502250386
-	Kurtosis = 58.55207161779911
-	Min      = 0.1475094738891478
-	2.5%     = 0.1475094738891478
+	Mean     = 5.015245037286094
+	Median   = 1.911891848126681
+	Variance = 20.26975011426596
+	Std.Dev  = 4.502193922330085
+	COV      = 0.8977016853330785
+	Sum      = 130.3963709694385
+	Sq. sum  = 1160.713505241242
+	Skewness = 0.8543749981599177
+	Kurtosis = 58.55456383560647
+	Min      = 0.1474822689025016
+	2.5%     = 0.1474822689025016
 	97.5%    = 10
 	Max      = 10
 ```
 
-Next, aBSREL sorts all the branches by length (longest first), and tries to greedily add &omega; categories to one branch at a time, until the addition is no longer justified by AIC-c scores. For example, for *Node1*
+Next, aBSREL sorts all the branches by length (longest first), and tries to greedily add &omega;
+categories to one branch at a time, until the addition is no longer justified by AIC-c scores. For example, for *Node1* (the transmission branch)
 
 ```
 [PHASE 1] Fitting Branch Site REL models to one branch at a time
 
-[PHASE 1] Branch Node1 log(L) = -2048.441, IC = 4234.950
+[PHASE 1] Branch Node1 log(L) = -2048.378, IC = 4234.824
 	2 rate clases
 	Node: mixtureTree.Node1
-	Length parameter = 0.01897377361517674
+	Length parameter = 0.01336277148609489
 	Class 1
-		omega = 0.395
-		weight = 0.925
+		omega = 0.741
+		weight = 0.927
 	Class 2
-		omega = 323.707
-		weight = 0.075
+		omega = 500.067
+		weight = 0.073
 
-[PHASE 1] Branch Node1 log(L) = -2048.446572827957, IC = 4239.084020683465
+[PHASE 1] Branch Node1 log(L) = -2048.383417390552, IC = 4238.957709808655
 	3 rate clases
 	Node: mixtureTree.Node1
-	Length parameter = 0.01917763880438389
+	Length parameter = 0.01447608909364904
 	Class 1
-		omega = 0.371
-		weight = 0.917
+		omega = 0.653
+		weight = 0.924
 	Class 2
-		omega = 0.348
-		weight = 0.007
+		omega = 1.000
+		weight = 0.003
 	Class 3
-		omega = 317.478
-		weight = 0.076
+		omega = 453.787
+		weight = 0.074
 ```
 
-using two rate classes improves the IC from 4273.3 to 4234.950, but going to three rate classes is not justified; aBSREL will now fix a 2-bin &omega; distribution for Node1 and move to the next branch. When all branches are done, a summary of inferred model complexity will be printed to the screen.
+using two rate classes improves the IC from 4273.3 to 4234.82, but going to three rate classes is not justified;
+ aBSREL will now fix a 2-bin &omega; distribution for Node1 and move to the next branch. When all branches are done, a summary of inferred model complexity will be printed to the screen.
 
 ```
 [INFERRED MODEL COMPLEXITY]
@@ -248,73 +271,80 @@ using two rate classes improves the IC from 4273.3 to 4234.950, but going to thr
 	mixtureTree.Node15 has 1 site rate classes
 ```
 
-Note that only a few branches support 2 &omega; classes and the majority are well-explained without any site-to-site variation. In the next phase, aBSREL optimizes all parameters in the just inferred model model, and when that is done
+Note that only a few branches support 2 &omega; classes, and the majority are well-explained without any site-to-site variation.
+In the next phase, aBSREL optimizes all parameters in the just inferred model model
 
 ```
 [PHASE 2] Fitting the full LOCAL alternative model (no constraints)
 
-Log L = -2010.311681036163 with 76 degrees of freedom, IC = 4175.206456312008
-((((((R20_239:0.001181905234412956,R20_245:0.003572863589321294)Node5:0.002382159141280985,R20_240:0.003554675856702284,R20_238:0,R20_242:0.00717131672360257)Node4:0.001174549675528636,R20_241:0.003575241391516638)Node3:0.001572673086346462,R20_243:0.006743813724935903)Node2:0.00414957933238273,R20_244:0.02083895650824434)Node1:0.3137837876935897,D20_233:1.824910162480461,(((D20_235:0,D20_236:0,D20_232:0)Node17:0.00691709620521831,(D20_234:0,D20_237:0)Node21:0.005338269529420897)Node16:0.2914940662473469,(D20_230:1.412974779777337,D20_231:0.007818737526001249)Node24:0.04659201750116307)Node15:0.003377490873425993)
+Log L = -2010.316070535664 with 76 degrees of freedom, IC = 4175.21523531101
+((((((R20_239:0.00118092581978196,R20_245:0.003569667603693839)Node5:0.002381817842795863,R20_240:0.003553647216143039,R20_238:0,R20_242:0.007168169441049736)Node4:0.00117380091547964,R20_241:0.003575525653051161)Node3:0.00152641735918693,R20_243:0.00678675856837407)Node2:0.004191579117137978,R20_244:0.0208264526952271)Node1:0.3493863150372911,D20_233:1.97194971887812,(((D20_235:0,D20_236:0,D20_232:0)Node17:0.006474098806062104,(D20_234:0,D20_237:0)Node21:0.005807129712809841)Node16:0.2604660169039897,(D20_230:1.783888976836944,D20_231:0.007844294029302912)Node24:0.02392400875821974)Node15:0)
 
 ```
 
-the analysis will proceed to test all the branches we selected (in step 8, which is *All*) to see if there is a proportion of sites with &omega; > 1 at that site, and whose removal would cause a significant drop in log-likelihood. As a shortcut, if the branch has no sites with &omega; > 1, it will not be tested (one can just set the p-value to 0.5). This is the most time consuming phase of the analysis. As the tests are done, aBSREL will print out a running tally to the screen, including the rate distribution inferred for a particular branch under the null (&omega; &le; 1) model, and the p-value for the branch. For example, the snippet below shows the alternative and null distributions of &omega; along Node1 (the same branch we tested with BUSTED previously), and reports the *uncorrected* p-value for the test of selection at this branch.
+Next,, the analysis will proceed to test all the branches we selected (in step 8, which is *All*) to see if there is a proportion of sites
+with &omega; > 1 at that site, and whose removal would cause a significant drop in log-likelihood.
+As a shortcut, if the branch has no sites with &omega; > 1, it will not be tested (one can just set the p-value to 0.5).
+This is the most time consuming phase of the analysis. As the tests are done, aBSREL will print out a running tally to the screen,
+including the rate distribution inferred for a particular branch under the null (&omega; &le; 1) model, and the p-value for the branch. For example, the snippet below shows the alternative and null distributions of &omega; along Node1 (the same branch we tested with BUSTED previously), and reports the *uncorrected* p-value for the test of selection at this branch.
 
 ```
 Node: mixtureTree.Node1
-	Length parameter = 0.03081004564682778
+	Length parameter = 0.02332190543007646
 	Class 1
-		omega = 0.938
-		weight = 0.936
+		omega = 1.000
+		weight = 0.934
 	Class 2
-		omega = 839.713
-		weight = 0.064
+		omega = 1136.665
+		weight = 0.066
 ...Testing for selection at this branch
 
 Node: mixtureTree.Node1
-	Length parameter = 0.0944430255269139
+	Length parameter = 0.08668549382549383
 	Class 1
 		omega = 1.000
-		weight = 1.000
+		weight = 0.911
 	Class 2
-		omega = 0.960
-		weight = 0.000
-p-value = 6.891154313848347e-13
+		omega = 1.000
+		weight = 0.089
+p-value = 7.310207994493112e-12
 ```
 
-Once all the tests have been done, aBSREL will print out the list of all branches with p-values below 0.05 **after** applying th e [Holm-Bonferroni multiple testing correction](http://en.wikipedia.org/wiki/Holm–Bonferroni_method).
+Once all the tests have been done, aBSREL will print out the list of all branches with p-values below 0.05 **after**
+applying the [Holm-Bonferroni multiple testing correction](http://en.wikipedia.org/wiki/Holm–Bonferroni_method).
 
 ```
-Summary of branches under episodic selection (26 were tested) :
-	Node1 p = 1.860611664739054e-11
-	D20_233 p = 2.454597539780501e-05
-	Node16 p = 5.601789156706172e-05
-
+Summary of branches under episodic selection (26 were tested, of which 14 required optimizations) :
+	Node1 p = 1.97375615851314e-10
+	Node16 p = 0.0001721868194877185
+	D20_233 p = 0.000595859551479061
 ```
 
-Output files generated by aBSREL will all be of the form `PREFIX.extension` where PREFIX is whatever you chose in selection step 9 above. 
+Output files generated by aBSREL will all be of the form `PREFIX.extension` where PREFIX is whatever you chose in step 9 above.
 
 * `PREFIX.mglocal.fit` : a HyPhy batch file containing the model fit (including all parameter estimates) of PHASE 0 (only branch variation). This is a NEXUS file with a private NEXUS HYPHY block.
 * `PREFIX.fit` : a HyPhy batch file containing the model fit (including all parameter estimates) of PHASE 2 (unconstrained branch-site model). This is a NEXUS file with a private NEXUS HYPHY block.
-* `PREFIX.json`: a JSON file storing all the relevant analysis output, it can be visualized with this [web app](http://octamonkey.ucsd.edu/datamonkey-js-ui/aBSREL/ui/bsrel.html)
+* `PREFIX.json`: a JSON file storing all the relevant analysis output, it can be visualized with this [web app](http://veg.github.io/hyphy-vision/absrel/)
 * `PREFIX`: a CSV file containing branch-by-branch output (similar to what is shown in the 'Table' tab of the web app)
 
 Questions.
 
 1. Which model (aBSREL or BUSTED) provides a better fit to the data, based on c-AIC?
 2. Compare the &omega; distributions inferred for Node1 (the transmission branch) by BUSTED with the *a priori* branch selection, and by aBSREL. If they differ, can you identify some of the key differences between the models that could explain the difference?
-3. Use the web-app to compare the list of branches which would have p-values &le; 0.05 without the multiple test correction. Are the lists notably different? 
+3. Use the [web app](http://veg.github.io/hyphy-vision/absrel/) to compare the list of branches which would have p-values &le; 0.05 without the multiple test correction. Are the lists notably different?
 
 
 Use FUBAR to find sites which have experienced pervasive diversification.
 ----------------------------------
 
->FUBAR is a [published method](http://mbe.oxfordjournals.org/content/30/5/1196) which is intended to supercede (by dint of its speed and statistical performance), previous REL and FEL methods. 
+>FUBAR is described in [Murrell et al](http://mbe.oxfordjournals.org/content/30/5/1196) which is intended to supercede (by dint of its speed and statistical performance), previous REL and FEL methods.
 
-We continue to use the `WestNileVirus_NS3.fas` dataset from the previous example, to identify individual sites which have exprienced pervasive diversification over the entire tree. An analysis by [Brault et al](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2291521/)  using our older counting method (SLAC), found a single site subject to positive selection (249).
+We will use the `WestNileVirus_NS3.fas` dataset to identify individual sites which have exprienced pervasive diversification over the entire tree.
+An analysis by [Brault et al](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2291521/)  using our older counting method (SLAC),
+found a single site (249) subject to positive selection.
 
 1. Select the appropriate analysis to run
-  * **_GUI_** Choose *Analysis:Standard Analyses:Selection/Recombination:FUBAR.bf*    
+  * **_GUI_** Choose *Analysis:Standard Analyses:Selection/Recombination:FUBAR.bf*
   * **_CLI_** When presented with the list of standard analysis options upon launch, choose *Selection/Recombination*, then option 1 (*Detect site-specific pervasive diversifying and purifying selection using the FUBAR (Fast Unbiased Bayesian AppRoximate) method on a multiple partition data set, e.g. produced by GARD.*). Note that, as suggested by the text, FUBAR can account for the confounding effect of recombination.
 2. **Universal** genetic code option
 3. **1** to specify that a single partition is being analyzed (you could specify more to correct for recombination).
@@ -332,7 +362,7 @@ We continue to use the `WestNileVirus_NS3.fas` dataset from the previous example
   * **_GUI_** Type **3** into the bottom box of the console window and hit Enter
   * **_CLI_** Type **3** and hit Enter
 
-  
+
 Output after Step 5
 ```
 FUBAR will write intermediate and result files to
@@ -382,10 +412,10 @@ Codon	Prob[dN/dS>1]	EBF[dN/dS]>1	PSRF	N_eff
 
 Questions
 
-1. Try the same analysis with different grid sizes (5,10,30). 
-  * How do the run times change? 
+1. Try the same analysis with different grid sizes (5,10,30).
+  * How do the run times change?
   * Are the results robust to the choice of N?
-2. Run FUBAR with using the same settings on a large HIV RT dataset (>400 sequences) `HIV_RT.nex`, which was previously analyzed by us using a [dedicated method for finding directional selection, MEDS] (http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1002507). 
+2. Run FUBAR with using the same settings on a large HIV RT dataset (>400 sequences) `HIV_RT.nex`, which was previously analyzed by us using a [dedicated method for finding directional selection, MEDS] (http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1002507).
   * How does FUBAR time scale with the number of sequences?
   * How does the list of sites found by FUBAR compare with the MEDS paper?
   * And with the list of sites known for their as resistance associated for [NNRTI](http://hivdb.stanford.edu/DR/NNRTIResiNote.html) and [NRTI](http://hivdb.stanford.edu/DR/NRTIResiNote.html)?
@@ -393,20 +423,22 @@ Questions
 Use MEME to find sites which have experienced episodic diversification.
 ----------------------------------
 
->MEME is a [published method](http://www.plosgenetics.org/article/info%3Adoi%2F10.1371%2Fjournal.pgen.1002764) which is our default recommendation for finding individual sites under selection. It is MUCH slower than FUBAR, however, so there's room for both. 
+>MEME is a [published method](http://www.plosgenetics.org/article/info%3Adoi%2F10.1371%2Fjournal.pgen.1002764) which is our default recommendation for finding individual sites under selection. It is MUCH slower than FUBAR, however, so there's room for both.
 
-We continue to use the `WestNileVirus_NS3.fas` dataset from the previous example, to find sites where selection operated along a subset of branches, while the rest of the tree may have been strongly conserved (in **addition** to the type of sites found by FUBAR). 
+We continue to use the `WestNileVirus_NS3.fas` dataset from the previous example, to find sites where selection operated along a subset of branches, while the rest of the tree may have been strongly conserved (in **addition** to the type of sites found by FUBAR).
 
-MEME tests each individual site separately; it runs quite slowly on a desktop, but very quickly on a cluster. You may also run MEME on [datamonkey](www.datamonkey.org) to speed up the process. MEME requires a lot of user input (this is a legacy issue and will be addressed in the upcoming HyPhy v3 release).
+MEME tests each individual site separately; it runs quite slowly on a desktop, but very quickly on a cluster.
+You may also run MEME on [datamonkey](www.datamonkey.org) to speed up the process.
+MEME requires a lot of user input (this is a legacy issue and will be addressed in the upcoming HyPhy v3 release).
 
 1. Select the appropriate analysis to run
-  * **_GUI_** Choose *Analysis:Standard Analyses:Selection:QuickSelectionDetection.bf*    
-  * **_CLI_** When presented with the list of standard analysis options upon launch, choose *Selection/Recombination*, then option 9 (*Quickly test for positive selection using several approaches.*). 
+  * **_GUI_** Choose *Analysis:Standard Analyses:Selection:QuickSelectionDetection.bf*
+  * **_CLI_** When presented with the list of standard analysis options upon launch, choose *Selection/Recombination*, then option 9 (*Quickly test for positive selection using several approaches.*).
 2. **Universal** genetic code option
-3. **New analysis** 
+3. **New analysis**
 4. The file to process
   * **_GUI_** In the file dialog, navigate to and select `HIV.nex'`
-  * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas`. 
+  * **_CLI_** Input the full path name to the file (make sure there is no trailing space), e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas`.
 4. **012345** (GTR combined with the codon model)
 5. Confirm that the tree included in the file will be used
   * **_GUI_** Type **y** into the bottom box of the console window and hit Enter
@@ -443,7 +475,7 @@ After step 10, for each codon, a line like this will be printed (this will also 
 | Codon:  249| Beta1:       0.86| P(Beta1):  0.00| Beta2:       2.50| P(Beta2):  1.00| alpha:       0.00| LRT:   7.62| p:  0.01| Log(L): -33.85 *P
 ```
 
-* &alpha; is the estimate for the synonymous rate at this site shared by all branches 
+* &alpha; is the estimate for the synonymous rate at this site shared by all branches
 * &beta;1 is the estimate for the first non-synonymous rate; &beta;1 is always &le; &alpha;
 * P(&beta;1) is the proportion of branches at that site which are estimated to evolve with with &beta;1
 * &beta;2 is the estimate for the second non-synonymous rate; &beta;2 is unconstrained
