@@ -430,7 +430,7 @@ MEME requires a lot of user input (this is a legacy issue and will be addressed 
 
 1. Select the appropriate analysis to run
   * **_GUI_** Choose *Analysis:Standard Analyses:Selection:QuickSelectionDetection.bf*
-  * **_CLI_** When presented with the list of standard analysis options upon launch, choose *Selection/Recombination*, then option 9 (*Quickly test for positive selection using several approaches.*).
+  * **_CLI_** When presented with the list of standard analysis options upon launch, choose *Positive Selection* (10), then option 9 (*Quickly test for positive selection using several approaches.*).
 2. **Universal** genetic code option
 3. **New analysis**
 4. The file to process
