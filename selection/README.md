@@ -156,7 +156,7 @@ The results of this *a priori* analysis are
 
 #### Questions.
 
-0. Use the [web app](http://veg.github.io/hyphy-vision/busted/) to visualize the JSON result file from this analysis and
+0. Use the [web app](http://veg.github.io/hyphy-vision/pages/busted/) to visualize the JSON result file from this analysis and
 compare the inferred &omega; distributions for the foreground and background branches.
 1. Explain why the log-likelihood for the unconstrained model is higher for the case when *a priori* branches are tested?
 2. Do these results suggest that the transmission branch is evolving differently from the rest of the tree?
