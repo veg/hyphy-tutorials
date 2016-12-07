@@ -4,7 +4,7 @@ Selection detection.
 __Data files__
 
 All the example alignment files used here are available in this [data directory](data).
-You may find it convenient to download the [zip file](https://github.com/veg/hyphy-tutorials/blob/master/selection/data/files.zip?raw=true)
+You may find it convenient to download the [zip file](https://github.com/veg/hyphy-tutorials/blob/master/docs/selection/data/files.zip?raw=true)
 with all the files from that directory, and unpack it on your machine.
 
 __Notation__
