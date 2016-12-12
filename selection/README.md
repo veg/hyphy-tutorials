@@ -283,7 +283,7 @@ using two rate classes improves the IC from 4273.3 to 4234.83, but going to thre
 ```
 
 Note that only a few branches support 2 &omega; classes, and the majority are well-explained without any site-to-site variation.
-In the next phase, aBSREL optimizes all parameters in the just inferred model model
+In the next phase, aBSREL optimizes all parameters in the just inferred model
 
 ```
 [PHASE 2] Fitting the full LOCAL alternative model (no constraints)
