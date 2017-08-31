@@ -1,6 +1,12 @@
 Selection detection.
 ====================
 
+
+__Software__
+
+This tutorial assumes the availability of HyPhy 2.2.x. Please download and install the program following the instructions at [the HyPhy project page](https://github.com/veg/hyphy).
+
+
 __Data files__
 
 All the example alignment files used here are available in this [data directory](data).
@@ -13,8 +19,7 @@ We will use the following notation.
 
 1. `filename` refers to a file on your local file system.
 2. **Option** refers to an analysis option that you will select when prompted by HyPhy.
-3. *Menu item* refers to a menu option you will select in the Mac OS X or Windows GUI (Graphical User Interface) version of HyPhy,
-or a command line you will supply in terminal with the command line version of HyPhy.
+3. *User choice* refers to an option you will select when propmted by HyPhy.
 4. <tt>X</tt> refers to a model parameter X.
 5. The following formatting denotes text output to the screen by HyPhy.
 
@@ -25,49 +30,6 @@ or a command line you will supply in terminal with the command line version of H
 [BUSTED] Fitting the unconstrained branch-site model
 ```
 
-Estimate alignment-wide &omega;.
---------------------------------
-
-1. Select the appropriate analysis to run
-  * **[if using GUI]** Choose *Analysis:Standard Analyses:Basic Analyses:AnalyzeCodonData.bf*
-  
-  ![Selection diaglog](images/GUI-dialog.png)
-  * **[if using CLI]** When presented with the list of standard analysis options upon launch, choose *Basic Analyses*, then option 1 (*Analyse codon data with a variery of standard models using given tree.*)
-  
-  ![Selection in terminal](images/CLI-dialog.png)
-  
-2. **Universal** genetic code option
-3. The file to process
-  * **[GUI]** In the file dialog, navigate to and select `WestNileVirus_NS3.fas`
-  * **[CLI]** Input the full path name to the file (make sure there is no trailing space), e.g.
-  `/Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas`
-4. **MG94CUSTOMCF3X4** model; the [Muse Gaut 94](http://www.ncbi.nlm.nih.gov/pubmed/7968485) model with the [CF3x4](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0011230) frequency estimator.
-5. **Global** model parameter option; estimate rate parameters jointly from all sites and branches.
-6. **012345** nucleotide substitution rates; estimate the general time reversible (GTR, 5 rates) model.
-7. Confirm that the tree included in the file will be used
-  * **[GUI]** Type **y** into the **bottom box of the console window** (see red box in the image) and hit "Enter"
-  ![Entering text](images/GUI-input.png)
-  
-  * **[CLI]** Type **y** and hit "Enter"
-8. **Estimate** branch lengths directly
-
-The output should look like this
-
-```
-______________RESULTS______________
-Log Likelihood = -6413.50468184347;
-Shared Parameters:
-R=0.008557848966878849
-GT=0.2303600815210618
-CT=1.979989664067556
-CG=0.02076764883647483
-AC=0.2428440082030551
-AT=0.3056061615274677
-
-Tree givenTree=((((((HNY1999:0.001101787189557129,NY99_EQHS:0.00108698796444847)Node6:0,NY99_FLAMINGO:0)Node5:0,MEX03:0.003274397587748566)Node4:0.001043699094072735,IS_98:0.002238969679775947)Node3:0.0108106327401535,PAH001:0.009947231998139823)Node2:0.006480815229843424,AST99:0.01679372620666718,((((RABENSBURG_ISOLATE:1.05102590132809,(WNFCG:0.01053193289945618,SPU116_89:0.00569613982107767)Node19:0.507068944265484)Node17:0.5772661357618611,KUNCG:0.08756311980263866)Node16:0.06947527827356371,(ETHAN4766:0.02385184540957046,(CHIN_01:0.01206163326344818,EG101:0.01506055273715259)Node25:0.007681688497219724)Node23:0.003442808476468687)Node15:0.01851421610241251,(((ITALY_1998_EQUINE:0.009037431851104481,PAAN001:0.007872553578665653)Node30:0.002694356278175029,(RO97_50:0.001642931262019352,VLG_4:0.00108305411902561)Node33:0.002794580801147744)Node29:0.0007243769694723316,KN3829:0.003058011972423634)Node28:0.01097965849521703)Node14:0.00929314901848397);
-```
-
-The <tt>R</tt> parameter denotes the global &omega; (dN/dS) ratio and is the object of this analysis.
 
 Run alignment-wide tests for episodic diversification (BUSTED).
 ------------------------------------------------------------------
@@ -109,7 +71,9 @@ For example, in this case the analysis inferred that
 1. A proportion of sites (~0.02) is evolving with dN/dS &gt; 1 (~105) along a subset of the branches (it is not known which).
 2. Forcing dN/dS = 1 provides a significantly worse (p ~ 10<sup>-16</sup>) fit to the data, i.e. rejects the hypothesis of no positive selection in the alignment.
 
-In addition to this output, HyPhy will also generate a [JSON](http://json.org) file with a more detailed analysis output. The JSON will be written to same directory as the input alignment file, with `BUSTED.json` appended to the file name, e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.nex.BUSTED.json`  This JSON file can be visualized and explored with this [web app](http://veg.github.io/hyphy-vision/pages/busted/), e.g., to obtain plots like those shown in the lecture slides.
+In addition to this output, HyPhy will also generate a [JSON](http://json.org) file with a more detailed analysis output. The JSON will be written to same directory as the input alignment file, with `BUSTED.json` appended to the file name, e.g. `/Users/sergei/Coding/hyphy-tutorials/selection/data/HIV.nex.BUSTED.json`  This JSON file can be visualized and explored with this [web app](http://veg.github.io/hyphy-vision/pages/busted/), e.g., to obtain plots like those shown in the lecture slides 
+
+>Please note that these pages are currently being transitioned to a new version, planned release Sep 2017, and may not work properly with user data; please use the datamonkey example below
 
 ### Run BUSTED using datamonkey.org
 
@@ -156,8 +120,8 @@ The results of this *a priori* analysis are
 
 #### Questions.
 
-0. Use the [web app](http://veg.github.io/hyphy-vision/pages/busted/) to visualize the JSON result file from this analysis and
-compare the inferred &omega; distributions for the foreground and background branches.
+<!--0. Use the [web app](http://veg.github.io/hyphy-vision/pages/busted/) to visualize the JSON result file from this analysis and
+compare the inferred &omega; distributions for the foreground and background branches.-->
 1. Explain why the log-likelihood for the unconstrained model is higher for the case when *a priori* branches are tested?
 2. Do these results suggest that the transmission branch is evolving differently from the rest of the tree?
 3. If the *a priori* analysis had a negative result (no selection along the transmission branch), might it still be possible to
@@ -350,7 +314,7 @@ Output files generated by aBSREL will all be of the form `PREFIX.extension` wher
 
 1. Which model (aBSREL or BUSTED) provides a better fit to the data, based on AIC<sub>c</sub> (the web apps report AIC<sub>c</sub> in the summary table)? 
 2. Compare the &omega; distributions inferred for Node1 (the transmission branch) by BUSTED with the *a priori* branch selection, and by aBSREL. If they differ, can you identify some of the key differences between the models that could explain the difference?
-3. Use the [web app](http://veg.github.io/hyphy-vision/pages/absrel/) to compare the list of branches which would have p-values &le; 0.05 without the multiple test correction. Are the lists notably different?
+3. Use the [web app](http://veg.github.io/hyphy-vision/pages/absrel/) to compare the list of branches which would have p-values &le; 0.05 without the multiple test correction. Are the lists notably different? 
 
 
 Use FUBAR to find sites which have experienced pervasive diversification.
@@ -382,6 +346,7 @@ found a single site (249) subject to positive selection.
 
 
 Output after Step 5
+
 ```
 FUBAR will write intermediate and result files to
 /Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas.extension
@@ -392,6 +357,7 @@ FUBAR will write intermediate and result files to
 [DIAGNOSTIC] FUBAR wrote the self-contained nucleotide fit file to /Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas.gtr_fit
 ```
 Output after Step 6
+
 ```
 [DIAGNOSTIC] FUBAR will use a 20X20 grid
 [FUBAR PHASE 2] Determining appropriate branch scaling using the 20X20 grid points.
@@ -401,6 +367,7 @@ Computing the likelihood function on grid points 400/400 00:00:03	Finished with 
 [DIAGNOSTIC] FUBAR wrote the self-contained codon fit file to /Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas.codon_fit
 [DIAGNOSTIC] FUBAR wrote the the site likelihoods file to /Users/sergei/Coding/hyphy-tutorials/selection/data/WestNileVirus_NS3.fas.grid_info
 ```
+
 Output after Step 8
 
 ```
@@ -559,4 +526,4 @@ The output of the analysis will look like
 
 The result of the analysis is that "Test" (recipient) branches have &omega; that scales like &omega; <sup>K</sup>, where **K** is 0.4389, i.e., shrink towards 1 (selection is weaker). The likelihood ratio test is to reject **K=1** (no difference is selective pressure), which yields a highly significant p = 0.00016 here.
 
-Like in other analyses, HyPhy will generate a JSON file (e.g., `HIV.nex.RELAX.json`) storing all the relevant analysis output, which can be visualized with this [web app](http://veg.github.io/hyphy-vision/pages/relax/). For example, you can see the fitted rate distributions.
+<!--Like in other analyses, HyPhy will generate a JSON file (e.g., `HIV.nex.RELAX.json`) storing all the relevant analysis output, which can be visualized with this [web app](http://veg.github.io/hyphy-vision/pages/relax/). For example, you can see the fitted rate distributions.-->
